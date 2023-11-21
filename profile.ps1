@@ -1,5 +1,6 @@
 Write-Host
 $timer = [Diagnostics.Stopwatch]::StartNew()
+$total = 0
 
 $MyInvocation.MyCommand.Path | Get-Item
 | ForEach-Object { $_.Target ?? $_.FullName }
@@ -14,9 +15,11 @@ Get-ChildItem -Path "." -Filter "*.ps1"
   . $_
 
   $timer.Stop()
-  Write-Host "==> $($_.Name.PadRight(20)) | $($timer.ElapsedMilliseconds)ms"
+  Write-Host "  + $($_.Name.PadRight(20)) | $($timer.ElapsedMilliseconds)ms"
+  $total += $timer.ElapsedMilliseconds
 }
 
 Pop-Location
 Remove-Item -Path Variable:\timer
-Write-Host
+Write-Host ("-" * 35)
+Write-Host "==> $("Total".PadRight(20)) | $($total)ms"
