@@ -1,4 +1,4 @@
-Write-Host
+Write-Host "PowerShell $($PSVersionTable.PSVersion)`n"
 $timer = [Diagnostics.Stopwatch]::StartNew()
 $total = 0
 
@@ -15,11 +15,10 @@ Get-ChildItem -Path "." -Filter "*.ps1"
   . $_
 
   $timer.Stop()
-  Write-Host "  + $($_.Name.PadRight(20)) | $($timer.ElapsedMilliseconds)ms"
+  Write-Host "  + $($_.Name.PadRight(20)) | $($timer.ElapsedMilliseconds.ToString().PadLeft(3)) ms"
   $total += $timer.ElapsedMilliseconds
 }
 
 Pop-Location
 Remove-Item -Path Variable:\timer
-Write-Host ("-" * 35)
-Write-Host "==> $("Total".PadRight(20)) | $($total)ms"
+Write-Host "$("-" * 35)`n==> $("Total".PadRight(20)) | $($total) ms"
