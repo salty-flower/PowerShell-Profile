@@ -2,10 +2,11 @@ Write-Host "PowerShell $($PSVersionTable.PSVersion)`n"
 $timer = [Diagnostics.Stopwatch]::StartNew()
 $total = 0
 
-$MyInvocation.MyCommand.Path | Get-Item
+$global:REPO_HOME = $MyInvocation.MyCommand.Path | Get-Item
 | ForEach-Object { $_.Target ?? $_.FullName }
-| Split-Path | Join-Path -ChildPath "profile.d"
-| Push-Location
+| Split-Path
+
+$global:REPO_HOME | Join-Path -ChildPath "profile.d" | Push-Location
 
 . "./variables.ps1"
 Get-ChildItem -Path "." -Filter "*.ps1"
