@@ -1,13 +1,13 @@
 format = """
-[░▒▓](#a3aed2)\
-[  ](bg:#a3aed2 fg:#090c0c)\
-[](bg:#769ff0 fg:#a3aed2)\
+[░▒▓](dark-bright-white)\
+[](bg:dark-bright-white fg:dark-black)\
+[](bg:dark-bright-blue fg:dark-bright-white)\
 $directory\
-[](fg:#769ff0 bg:#394260)\
+[](fg:dark-bright-blue bg:dark-blue)\
 $conda\
 $git_branch\
 $git_status\
-[](fg:#394260 bg:#212736)\
+[](fg:dark-blue bg:dark-cyan)\
 $nodejs\
 $rust\
 $golang\
@@ -15,12 +15,14 @@ $java\
 $c\
 $gradle\
 $scala\
-[](fg:#212736 bg:#1d2230)\
+[](fg:dark-cyan bg:dark-green)\
 $time\
-[](fg:#1d2230 bg:#102230)\
+[](fg:dark-green bg:green)\
 $cmd_duration\
-[ ](fg:#102230)\
+[ ](fg:green)\
 """
+
+continuation_prompt = '[>](dark-blue) '
 
 palette = "gruvbox-dark"
 
@@ -44,9 +46,26 @@ purple = "#B16286"
 red = "#CC241D"
 white = "#A89984"
 yellow = "#D79921"
+dark-black = "#1d2021"
+dark-blue = "#32707D"
+dark-bright-black = "#7c6f64"
+dark-bright-blue = "#458588"
+dark-bright-cyan = "#427b58"
+dark-bright-green = "#79740e"
+dark-bright-purple = "#8f3f71"
+dark-bright-red = "#9d2021"
+dark-bright-white = "#c9b99a"
+dark-bright-yellow = "#b57614"
+dark-cyan = "#427b58"
+dark-foreground = "#c9b99a"
+dark-green = "#79740e"
+dark-purple = "#8f3f71"
+dark-red = "#9d2021"
+dark-white = "#7c6f64"
+dark-yellow = "#b57614"
 
 [directory]
-style = "fg:#e3e5e5 bg:#769ff0"
+style = "fg:bright-white bg:dark-bright-blue"
 format = "[ $path ]($style)"
 truncation_length = 3
 truncation_symbol = "…/"
@@ -57,61 +76,61 @@ truncation_symbol = "…/"
 "Music" = " "
 "Pictures" = " "
 
+
 [conda]
 symbol = "🅒"
-style = "bg:#394260"
+style = "bg:dark-blue"
 ignore_base = false
-format = '[[$symbol $environment](fg:#769ff0 bg:#394260)]($style)'
+format = '[[$symbol $environment](fg:bright-white bg:dark-blue)]($style)'
 
 [git_branch]
 symbol = ""
-style = "bg:#394260"
-format = '[[ $symbol $branch ](fg:#769ff0 bg:#394260)]($style)'
+format = '[[ $symbol $branch ](fg:bright-white bg:dark-blue)]($style)'
 
 [git_status]
-style = "bg:#394260"
-format = '[[($all_status$ahead_behind )](fg:#769ff0 bg:#394260)]($style)'
+style = "bg:dark-blue"
+format = '[[($all_status$ahead_behind )](fg:bright-white bg:dark-blue)]($style)'
 
 [nodejs]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:dark-cyan"
+format = '[[ $symbol ($version) ](fg:bright-white bg:dark-cyan)]($style)'
 
 [rust]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
+style = "bg:dark-cyan"
+format = '[[ $symbol ($version) ](fg:bright-white bg:dark-cyan)]($style)'
 
 [golang]
 symbol = ""
-style = "bg:#212736"
-format = '[[ $symbol ($version) ](fg:#769ff0 bg:#212736)]($style)'
-
-[c]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[gradle]
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
-
-[scala]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
+style = "bg:dark-cyan"
+format = '[[ $symbol ($version) ](fg:bright-white bg:dark-cyan)]($style)'
 
 [java]
-symbol = " "
-style = "bg:#86BBD8"
-format = '[ $symbol ($version) ]($style)'
+symbol = ""
+style = "bg:dark-bright-green"
+format = '[[ $symbol ($version) ](fg:bright-white bg:dark-bright-green)]($style)'
+
+[c]
+symbol = ""
+style = "bg:dark-bright-green"
+format = '[[ $symbol ($version) ](fg:bright-white bg:dark-bright-green)]($style)'
+
+[gradle]
+style = "bg:dark-bright-green"
+format = '[[ $symbol ($version) ](fg:bright-white bg:dark-bright-green)]($style)'
+
+[scala]
+symbol = ""
+style = "bg:dark-bright-green"
+format = '[[ $symbol ($version) ](fg:bright-white bg:dark-bright-green)]($style)'
 
 [time]
 disabled = false
-time_format = "%R"                                      # Hour:Minute Format
-style = "bg:#1d2230"
-format = '[[  $time ](fg:#a0a9cb bg:#1d2230)]($style)'
+time_format = "%R"                                              # Hour:Minute Format
+style = "bg:dark-green"
+format = '[[  $time ](fg:bright-white bg:dark-green)]($style)'
 
 [cmd_duration]
-style = "fg:#a0a9cb bg:#102230"
+style = "fg:bright-white bg:green"
 format = '[ 󱦟 $duration ]($style)'
