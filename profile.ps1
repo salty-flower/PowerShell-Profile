@@ -1,5 +1,7 @@
 Write-Host "PowerShell $($PSVersionTable.PSVersion)`n"
 $timer = [Diagnostics.Stopwatch]::StartNew()
+$PADDING_LEFT = 20
+$PADDING_RIGHT = 4
 $total = 0
 
 $global:REPO_HOME = $MyInvocation.MyCommand.Path | Get-Item
@@ -16,10 +18,10 @@ Get-ChildItem -Path "." -Filter "*.ps1"
   . $_
 
   $timer.Stop()
-  Write-Host "  + $($_.Name.PadRight(20)) | $($timer.ElapsedMilliseconds.ToString().PadLeft(3)) ms"
+  Write-Host "  + $($_.Name.PadRight($PADDING_LEFT)) | $($timer.ElapsedMilliseconds.ToString().PadLeft($PADDING_RIGHT)) ms"
   $total += $timer.ElapsedMilliseconds
 }
 
 Pop-Location
 Remove-Item -Path Variable:\timer
-Write-Host "$("-" * 35)`n==> $("Total".PadRight(20)) | $($total) ms"
+Write-Host "$("-" * 35)`n==> $("Total".PadRight($PADDING_LEFT)) | $($total.ToString().PadLeft($PADDING_RIGHT)) ms"
