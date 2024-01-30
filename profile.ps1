@@ -10,9 +10,9 @@ $global:REPO_HOME = $MyInvocation.MyCommand.Path | Get-Item
 
 $global:REPO_HOME | Join-Path -ChildPath "profile.d" | Push-Location
 
-. "./variables.ps1"
-Get-ChildItem -Path "." -Filter "*.ps1"
-| ForEach-Object {
+$hoisted = @("variables.local.ps1", "variables.ps1")
+$others = Get-ChildItem -File -Filter "*.ps1" | Where-Object { $hoisted -NotContains $_.Name }
+(($hoisted | Get-Item) + $others) | ForEach-Object {
   $timer.Restart()
 
   . $_
