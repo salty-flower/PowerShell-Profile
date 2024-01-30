@@ -43,3 +43,14 @@ function Format-PowerShellScript {
   Import-Module "${SCOOP_HOME}\modules\PowerShell-Beautifier"
   Edit-DTWBeautifyScript -SourcePath $Path
 }
+
+function Step-CourseDirectory
+{
+  param(
+    [Parameter(Mandatory = $true)]
+    [string]$CourseCode
+  )
+
+  $fullPath = Join-Path -Path $env:CURRENT_COURSE_HOME -ChildPath $CourseCode
+  Push-Location -Path $fullPath
+}
