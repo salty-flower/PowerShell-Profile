@@ -4,18 +4,22 @@ Register-ArgumentCompleter -Native -CommandName 'just' -ScriptBlock {
   $commandElements = $commandAst.CommandElements
   $command = @(
     'just'
-    for ($i = 1; $i -lt $commandElements.Count; $i++) {
+    for ($i = 1; $i -lt $commandElements.Count; $i++)
+    {
       $element = $commandElements[$i]
       if ($element -isnot [StringConstantExpressionAst] -or
         $element.StringConstantType -ne [StringConstantType]::BareWord -or
-        $element.Value.StartsWith('-')) {
+        $element.Value.StartsWith('-'))
+      {
         break
       }
       $element.Value
     }) -join ';'
 
-  $completions = @(switch ($command) {
-      'just' {
+  $completions = @(switch ($command)
+    {
+      'just'
+      {
         [CompletionResult]::new('--chooser','chooser',[CompletionResultType]::ParameterName,'Override binary invoked by `--choose`')
         [CompletionResult]::new('--color','color',[CompletionResultType]::ParameterName,'Print colorful output')
         [CompletionResult]::new('--dump-format','dump-format',[CompletionResultType]::ParameterName,'Dump justfile as <FORMAT>')
@@ -70,16 +74,19 @@ Register-ArgumentCompleter -Native -CommandName 'just' -ScriptBlock {
       }
     })
 
-  function Get-JustFileRecipes ([string[]]$CommandElements) {
+  function Get-JustFileRecipes ([string[]]$CommandElements)
+  {
     $justFileIndex = $commandElements.IndexOf("--justfile");
 
-    if ($justFileIndex -ne -1 && $justFileIndex + 1 -le $commandElements.Length) {
+    if ($justFileIndex -ne -1 && $justFileIndex + 1 -le $commandElements.Length)
+    {
       $justFileLocation = $commandElements[$justFileIndex + 1]
     }
 
     $justArgs = @("--summary")
 
-    if (Test-Path $justFileLocation) {
+    if (Test-Path $justFileLocation)
+    {
       $justArgs += @("--justfile",$justFileLocation)
     }
 
@@ -91,5 +98,5 @@ Register-ArgumentCompleter -Native -CommandName 'just' -ScriptBlock {
   $recipes = Get-JustFileRecipes -CommandElements $elementValues
   $completions += $recipes
   $completions.Where{ $_.CompletionText -like "$wordToComplete*" } |
-  Sort-Object -Property ListItemText
+    Sort-Object -Property ListItemText
 }

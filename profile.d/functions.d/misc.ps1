@@ -1,4 +1,5 @@
-function Start-Conda {
+function Start-Conda
+{
   & "${SCOOP_HOME}\apps\mambaforge\current\Scripts\conda.exe" "shell.powershell" "hook" | Out-String | Where-Object { $_ } | Invoke-Expression
 }
 
@@ -13,7 +14,8 @@ function Remove-Fast
 }
 
 
-function Search-RgaFzf {
+function Search-RgaFzf
+{
   param(
     [Parameter(Mandatory = $true)]
     [string]$Query
@@ -29,13 +31,15 @@ function Search-RgaFzf {
 
   $file = Invoke-Expression ($FZFCommand["DefaultCommand"] + " | " + $FZFCommand["Command"])
 
-  if (-not [string]::IsNullOrEmpty($file)) {
+  if (-not [string]::IsNullOrEmpty($file))
+  {
     Write-Host "Opening $file in neovim (read-only mode)"
     & nvim -R $file
   }
 }
 
-function Format-PowerShellScript {
+function Format-PowerShellScript
+{
   param(
     [Parameter(Mandatory = $true)]
     [string]$Path

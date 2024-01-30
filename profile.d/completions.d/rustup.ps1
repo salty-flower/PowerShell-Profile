@@ -4,19 +4,23 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
   $commandElements = $commandAst.CommandElements
   $command = @(
     'rustup'
-    for ($i = 1; $i -lt $commandElements.Count; $i++) {
+    for ($i = 1; $i -lt $commandElements.Count; $i++)
+    {
       $element = $commandElements[$i]
       if ($element -isnot [StringConstantExpressionAst] -or
         $element.StringConstantType -ne [StringConstantType]::BareWord -or
         $element.Value.StartsWith('-') -or
-        $element.Value -eq $wordToComplete) {
+        $element.Value -eq $wordToComplete)
+      {
         break
       }
       $element.Value
     }) -join ';'
 
-  $completions = @(switch ($command) {
-      'rustup' {
+  $completions = @(switch ($command)
+    {
+      'rustup'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('-V','V',[CompletionResultType]::ParameterName,'Print version information')
@@ -45,12 +49,14 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('help','help',[CompletionResultType]::ParameterValue,'Print this message or the help of the given subcommand(s)')
         break
       }
-      'rustup;dump-testament' {
+      'rustup;dump-testament'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;show' {
+      'rustup;show'
+      {
         [CompletionResult]::new('-v','v',[CompletionResultType]::ParameterName,'Enable verbose output with rustc information for all installed toolchains')
         [CompletionResult]::new('--verbose','verbose',[CompletionResultType]::ParameterName,'Enable verbose output with rustc information for all installed toolchains')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
@@ -61,27 +67,32 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('help','help',[CompletionResultType]::ParameterValue,'Print this message or the help of the given subcommand(s)')
         break
       }
-      'rustup;show;active-toolchain' {
+      'rustup;show;active-toolchain'
+      {
         [CompletionResult]::new('-v','v',[CompletionResultType]::ParameterName,'Enable verbose output with rustc information')
         [CompletionResult]::new('--verbose','verbose',[CompletionResultType]::ParameterName,'Enable verbose output with rustc information')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;show;home' {
+      'rustup;show;home'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;show;profile' {
+      'rustup;show;profile'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;show;help' {
+      'rustup;show;help'
+      {
         break
       }
-      'rustup;install' {
+      'rustup;install'
+      {
         [CompletionResult]::new('--profile','profile',[CompletionResultType]::ParameterName,'profile')
         [CompletionResult]::new('--no-self-update','no-self-update',[CompletionResultType]::ParameterName,'Don''t perform self-update when running the `rustup install` command')
         [CompletionResult]::new('--force','force',[CompletionResultType]::ParameterName,'Force an update, even if some components are missing')
@@ -90,12 +101,14 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;uninstall' {
+      'rustup;uninstall'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;update' {
+      'rustup;update'
+      {
         [CompletionResult]::new('--no-self-update','no-self-update',[CompletionResultType]::ParameterName,'Don''t perform self update when running the `rustup update` command')
         [CompletionResult]::new('--force','force',[CompletionResultType]::ParameterName,'Force an update, even if some components are missing')
         [CompletionResult]::new('--force-non-host','force-non-host',[CompletionResultType]::ParameterName,'Install toolchains that require an emulator. See https://github.com/rust-lang/rustup/wiki/Non-host-toolchains')
@@ -103,17 +116,20 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;check' {
+      'rustup;check'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;default' {
+      'rustup;default'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;toolchain' {
+      'rustup;toolchain'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('list','list',[CompletionResultType]::ParameterValue,'List installed toolchains')
@@ -123,14 +139,16 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('help','help',[CompletionResultType]::ParameterValue,'Print this message or the help of the given subcommand(s)')
         break
       }
-      'rustup;toolchain;list' {
+      'rustup;toolchain;list'
+      {
         [CompletionResult]::new('-v','v',[CompletionResultType]::ParameterName,'Enable verbose output with toolchain information')
         [CompletionResult]::new('--verbose','verbose',[CompletionResultType]::ParameterName,'Enable verbose output with toolchain information')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;toolchain;install' {
+      'rustup;toolchain;install'
+      {
         [CompletionResult]::new('--profile','profile',[CompletionResultType]::ParameterName,'profile')
         [CompletionResult]::new('-c','c',[CompletionResultType]::ParameterName,'Add specific components on installation')
         [CompletionResult]::new('--component','component',[CompletionResultType]::ParameterName,'Add specific components on installation')
@@ -144,20 +162,24 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;toolchain;uninstall' {
+      'rustup;toolchain;uninstall'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;toolchain;link' {
+      'rustup;toolchain;link'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;toolchain;help' {
+      'rustup;toolchain;help'
+      {
         break
       }
-      'rustup;target' {
+      'rustup;target'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('list','list',[CompletionResultType]::ParameterValue,'List installed and available targets')
@@ -166,29 +188,34 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('help','help',[CompletionResultType]::ParameterValue,'Print this message or the help of the given subcommand(s)')
         break
       }
-      'rustup;target;list' {
+      'rustup;target;list'
+      {
         [CompletionResult]::new('--toolchain','toolchain',[CompletionResultType]::ParameterName,'Toolchain name, such as ''stable'', ''nightly'', or ''1.8.0''. For more information see `rustup help toolchain`')
         [CompletionResult]::new('--installed','installed',[CompletionResultType]::ParameterName,'List only installed targets')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;target;add' {
+      'rustup;target;add'
+      {
         [CompletionResult]::new('--toolchain','toolchain',[CompletionResultType]::ParameterName,'Toolchain name, such as ''stable'', ''nightly'', or ''1.8.0''. For more information see `rustup help toolchain`')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;target;remove' {
+      'rustup;target;remove'
+      {
         [CompletionResult]::new('--toolchain','toolchain',[CompletionResultType]::ParameterName,'Toolchain name, such as ''stable'', ''nightly'', or ''1.8.0''. For more information see `rustup help toolchain`')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;target;help' {
+      'rustup;target;help'
+      {
         break
       }
-      'rustup;component' {
+      'rustup;component'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('list','list',[CompletionResultType]::ParameterValue,'List installed and available components')
@@ -197,31 +224,36 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('help','help',[CompletionResultType]::ParameterValue,'Print this message or the help of the given subcommand(s)')
         break
       }
-      'rustup;component;list' {
+      'rustup;component;list'
+      {
         [CompletionResult]::new('--toolchain','toolchain',[CompletionResultType]::ParameterName,'Toolchain name, such as ''stable'', ''nightly'', or ''1.8.0''. For more information see `rustup help toolchain`')
         [CompletionResult]::new('--installed','installed',[CompletionResultType]::ParameterName,'List only installed components')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;component;add' {
+      'rustup;component;add'
+      {
         [CompletionResult]::new('--toolchain','toolchain',[CompletionResultType]::ParameterName,'Toolchain name, such as ''stable'', ''nightly'', or ''1.8.0''. For more information see `rustup help toolchain`')
         [CompletionResult]::new('--target','target',[CompletionResultType]::ParameterName,'target')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;component;remove' {
+      'rustup;component;remove'
+      {
         [CompletionResult]::new('--toolchain','toolchain',[CompletionResultType]::ParameterName,'Toolchain name, such as ''stable'', ''nightly'', or ''1.8.0''. For more information see `rustup help toolchain`')
         [CompletionResult]::new('--target','target',[CompletionResultType]::ParameterName,'target')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;component;help' {
+      'rustup;component;help'
+      {
         break
       }
-      'rustup;override' {
+      'rustup;override'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('list','list',[CompletionResultType]::ParameterValue,'List directory toolchain overrides')
@@ -230,40 +262,47 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('help','help',[CompletionResultType]::ParameterValue,'Print this message or the help of the given subcommand(s)')
         break
       }
-      'rustup;override;list' {
+      'rustup;override;list'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;override;set' {
+      'rustup;override;set'
+      {
         [CompletionResult]::new('--path','path',[CompletionResultType]::ParameterName,'Path to the directory')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;override;unset' {
+      'rustup;override;unset'
+      {
         [CompletionResult]::new('--path','path',[CompletionResultType]::ParameterName,'Path to the directory')
         [CompletionResult]::new('--nonexistent','nonexistent',[CompletionResultType]::ParameterName,'Remove override toolchain for all nonexistent directories')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;override;help' {
+      'rustup;override;help'
+      {
         break
       }
-      'rustup;run' {
+      'rustup;run'
+      {
         [CompletionResult]::new('--install','install',[CompletionResultType]::ParameterName,'Install the requested toolchain if needed')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;which' {
+      'rustup;which'
+      {
         [CompletionResult]::new('--toolchain','toolchain',[CompletionResultType]::ParameterName,'Toolchain name, such as ''stable'', ''nightly'', or ''1.8.0''. For more information see `rustup help toolchain`')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;doc' {
+      'rustup;doc'
+      {
         [CompletionResult]::new('--toolchain','toolchain',[CompletionResultType]::ParameterName,'Toolchain name, such as ''stable'', ''nightly'', or ''1.8.0''. For more information see `rustup help toolchain`')
         [CompletionResult]::new('--path','path',[CompletionResultType]::ParameterName,'Only print the path to the documentation')
         [CompletionResult]::new('--alloc','alloc',[CompletionResultType]::ParameterName,'The Rust core allocation and collections library')
@@ -285,7 +324,8 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;self' {
+      'rustup;self'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('update','update',[CompletionResultType]::ParameterValue,'Download and install updates to rustup')
@@ -294,26 +334,31 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('help','help',[CompletionResultType]::ParameterValue,'Print this message or the help of the given subcommand(s)')
         break
       }
-      'rustup;self;update' {
+      'rustup;self;update'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;self;uninstall' {
+      'rustup;self;uninstall'
+      {
         [CompletionResult]::new('-y','y',[CompletionResultType]::ParameterName,'y')
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;self;upgrade-data' {
+      'rustup;self;upgrade-data'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;self;help' {
+      'rustup;self;help'
+      {
         break
       }
-      'rustup;set' {
+      'rustup;set'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('default-host','default-host',[CompletionResultType]::ParameterValue,'The triple used to identify toolchains when not specified')
@@ -322,34 +367,40 @@ Register-ArgumentCompleter -Native -CommandName 'rustup' -ScriptBlock {
         [CompletionResult]::new('help','help',[CompletionResultType]::ParameterValue,'Print this message or the help of the given subcommand(s)')
         break
       }
-      'rustup;set;default-host' {
+      'rustup;set;default-host'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;set;profile' {
+      'rustup;set;profile'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;set;auto-self-update' {
+      'rustup;set;auto-self-update'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;set;help' {
+      'rustup;set;help'
+      {
         break
       }
-      'rustup;completions' {
+      'rustup;completions'
+      {
         [CompletionResult]::new('-h','h',[CompletionResultType]::ParameterName,'Print help information')
         [CompletionResult]::new('--help','help',[CompletionResultType]::ParameterName,'Print help information')
         break
       }
-      'rustup;help' {
+      'rustup;help'
+      {
         break
       }
     })
 
   $completions.Where{ $_.CompletionText -like "$wordToComplete*" } |
-  Sort-Object -Property ListItemText
+    Sort-Object -Property ListItemText
 }
