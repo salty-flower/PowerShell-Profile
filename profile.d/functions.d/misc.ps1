@@ -58,3 +58,10 @@ function Step-CourseDirectory
   $fullPath = Join-Path -Path $env:CURRENT_COURSE_HOME -ChildPath $CourseCode
   Push-Location -Path $fullPath
 }
+
+function Bump-ScoopApplications
+{
+  scoop update *
+  scoop cleanup *
+  scoop cache rm *
+}

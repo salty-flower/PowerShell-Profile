@@ -7,6 +7,7 @@ Set-Alias -Name rgaf -Value Search-RgaFzf
 Set-Alias -Name psf -Value Format-PowerShellScript
 Set-Alias -Name ib -Value Invoke-Build
 Set-Alias -Name scd -Value Step-CourseDirectory
+Set-Alias -Name sgoop -Value Bump-ScoopApplications
 
 # Zoxide
 Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
