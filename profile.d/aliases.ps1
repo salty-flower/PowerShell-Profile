@@ -12,3 +12,4 @@ Set-Alias -Name sgoop -Value Bump-ScoopApplications
 # Zoxide
 Set-Alias -Name z -Value __zoxide_z -Option AllScope -Scope Global -Force
 Set-Alias -Name zi -Value __zoxide_zi -Option AllScope -Scope Global -Force
+Set-Alias -Name cd -Value z -Option AllScope -Scope Global -Force
