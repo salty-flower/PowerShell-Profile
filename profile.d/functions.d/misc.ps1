@@ -64,4 +64,7 @@ function Bump-ScoopApplications
   scoop update *
   scoop cleanup *
   scoop cache rm *
+  Start-Job { nvim --headless -c "AstroUpdate" -c "qa" }
+  Start-Job { nvim --headless -c "lua require('lazy').update()" -c "qa" }
+  Get-Job | Wait-Job | Out-Null
 }
